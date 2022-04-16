@@ -4,3 +4,22 @@ const port = 3000;
 const app = express();
 
 app.listen(3000, () => console.log(`Server running on port ${port}`));
+
+
+// Routes
+
+app.get('/', (req, res) => {
+  res.sendFile('./views/index.html', { root: __dirname });
+});
+
+app.get('/about', (req, res) => {
+  res.sendFile('./views/about.html', { root: __dirname });
+});
+
+app.get('/register', (req, res) => {
+  res.sendFile('./views/register.html', { root: __dirname });
+});
+
+app.use((req, res) => {
+  res.sendFile('./views/error404.html', { root: __dirname })
+});
