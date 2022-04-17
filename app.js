@@ -16,7 +16,7 @@ mongoose.connect('mongodb://localhost:27017/LogIn-Users').then(() => {
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true })); // to support URL-encoded bodies
 
-// Routes
+// Routes views
 app.get('/', (req, res) => {
   res.sendFile('./views/index.html', { root: __dirname });
 });
@@ -29,7 +29,8 @@ app.get('/register', (req, res) => {
   res.sendFile('./views/register.html', { root: __dirname });
 });
 
-app.post('/create_user', (req, res) => {
+// Routes Data Base
+app.post('/user', (req, res) => {
   const newUserData = req.body;
   const newUser = new User(newUserData);
 
@@ -38,6 +39,23 @@ app.post('/create_user', (req, res) => {
     res.redirect('/');
   }).catch((err) => {
     console.log('User cannot be save', err);
+  });
+});
+
+app.get('/user', (req, res) => {
+  User.find().then((usersData) => {
+    res.send(usersData);
+  }).catch((err) => {
+    console.log('Cannot find the users data', err);
+  });
+});
+
+app.get('/user/:id', (req, res) => {
+  const userId = req.params.id;
+  User.findById(userId).then((userData) => {
+    res.send(userData);
+  }).catch((err) => {
+    console.log('Cannot find the user', err);
   });
 });
 
