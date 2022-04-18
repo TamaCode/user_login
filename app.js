@@ -29,6 +29,10 @@ app.get('/register', (req, res) => {
   res.sendFile('./views/register.html', { root: __dirname });
 });
 
+app.get('/login', (req, res) => {
+  res.sendFile('./views/login.html', { root: __dirname });
+});
+
 // Routes Data Base
 app.post('/user', (req, res) => {
   const newUserData = req.body;
