@@ -50,16 +50,16 @@ app.get('/user', (req, res) => {
   User.find().then((usersData) => {
     res.send(usersData);
   }).catch((err) => {
-    console.log('Cannot find the users data', err);
+    console.log('Cannot connect to DB', err);
   });
 });
 
-app.get('/user/:id', (req, res) => {
-  const userId = req.params.id;
-  User.findById(userId).then((userData) => {
+app.get('/user/:username', (req, res) => {
+  const username = req.params.username;
+  User.findOne({ username }).then((userData) => {
     res.send(userData);
   }).catch((err) => {
-    console.log('Cannot find the user', err);
+    console.log('Cannot connect to DB', err);
   });
 });
 

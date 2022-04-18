@@ -15,7 +15,7 @@
   <header>
     <h1>MGT - User Login App</h1>
     <div class="header_text">
-      <p>Register and Sign In!</p>
+      <p>Sign In and Enjoy!</p>
       <nav>
         <ul>
           <li><a href="/">Home</a></li>
@@ -29,16 +29,17 @@
   </header>
 
   <section class="form_content">
-    <form action="/user" method="POST">
+    <form>
       <h4>Enter your information</h4>
       <label for="username">Username:</label>
       <input type="text" name="username" id="username" required>
       <label for="password">Password:</label>
       <input type="text" name="password" id="password" required>
-      <button type="submit">Login</button>
+      <button type="button" id="login_button">Login</button>
     </form>
   </section>
 
+  <script src="script_login.js"></script>
 </body>
 
 </html>
