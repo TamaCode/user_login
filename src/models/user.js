@@ -7,18 +7,18 @@ const userSchema = new Schema({
     type: String,
     required: [true, 'Enter an username'],
     unique: true,
-    minlength: [5, 'The minimum length for username is 5 characters']
+    minlength: [5, 'The minimum length for username is 5 characters.']
   },
   password: {
     type: String,
     required: [true, 'Enter a password'],
-    minlength: [8, 'The minimum length for password is 8 characters']
+    minlength: [8, 'The minimum length for password is 8 characters.']
   },
   email: {
     type: String,
     required: [true, 'Enter an email'],
     unique: true,
-    validate: [isEmail, 'Please, enter a valid email']
+    validate: [isEmail, 'The email entered is not valid.']
   }
 }, { timestamps: true });
 

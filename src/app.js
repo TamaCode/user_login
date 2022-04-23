@@ -16,6 +16,7 @@ mongoose.connect('mongodb://localhost:27017/LogIn-Users').then(() => {
 // Server Static Files
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true })); // to support URL-encoded bodies
+app.use(express.json()); // Habilita el envio de JSON al servidor desde el cliente
 
 // Routes views
 app.get('/', (req, res) => {

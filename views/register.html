@@ -29,7 +29,7 @@
   </header>
 
   <section class="form_content">
-    <form action="/user" method="POST">
+    <form>
       <h4>Complete with your information</h4>
       <label for="username">Username:</label>
       <input type="text" name="username" id="username" required>
@@ -37,10 +37,11 @@
       <input type="text" name="password" id="password" required>
       <label for="email">Email:</label>
       <input type="text" id="email" name="email" required>
-      <button type="submit">Register!</button>
+      <button type="button" id="register_button">Register!</button>
     </form>
   </section>
 
+  <script src="js/script_register.js"></script>
 </body>
 
 </html>
