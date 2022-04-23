@@ -2,6 +2,7 @@ const express = require('express');
 const User = require('../models/user');
 const router = new express.Router();
 
+// REGISTER
 router.post('/user', (req, res) => {
   const newUserData = req.body;
   const newUser = new User(newUserData);
@@ -16,6 +17,7 @@ router.post('/user', (req, res) => {
   });
 });
 
+// HOME
 router.get('/user', (req, res) => {
   User.find().then((usersData) => {
     res.send(usersData);
@@ -24,6 +26,7 @@ router.get('/user', (req, res) => {
   });
 });
 
+// LOGIN
 router.get('/user/:username', (req, res) => {
   const username = req.params.username;
   User.findOne({ username }).then((userData) => {
