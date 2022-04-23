@@ -11,7 +11,6 @@ const loginButtonPressed = () => {
     getUserData(usernameValue).then((userData) => {
       userData?.password === passwordValue ? alert('You have been logged successfuly!') : alert('It has not been possible to Log In!');
     }).catch((err) => {
-      console.log(err);
       alert('It has not been possible to Log In!');
     });
   } else {
