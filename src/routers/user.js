@@ -1,4 +1,5 @@
 const express = require('express');
+const bcrypt = require('bcrypt');
 const User = require('../models/user');
 const router = new express.Router();
 
@@ -27,14 +28,29 @@ router.get('/user', (req, res) => {
 });
 
 // LOGIN
-router.get('/user/:username', (req, res) => {
+router.get('/user/:username&:password', (req, res) => {
   const username = req.params.username;
-  User.findOne({ username }).then((userData) => {
-    res.send(userData);
+  const passwordValue = req.params.password;
+
+  validateUserCredentials(username, passwordValue).then((validateResult) => {
+    res.send({ validateResult });
   }).catch((err) => {
-    console.log('Cannot connect to DB', err);
+    console.log('Cannot connect to DB or Cannot unhashing password', err);
   });
 });
+
+const validateUserCredentials = async (username, passwordValue) => {
+  let validateResult;
+  const userData = await User.findOne({ username });
+
+  if (userData) {
+    validateResult = await bcrypt.compare(passwordValue, userData.password) ? 'Logged In' : 'Bad Credentials';
+  } else {
+    validateResult = 'User not found';
+  }
+
+  return validateResult;
+};
 
 const handleErrors = (error) => {
   let errorMessage = '';

@@ -8,8 +8,8 @@ const loginButtonPressed = () => {
   const passwordValue = document.getElementById('password').value;
   
   if (usernameValue && passwordValue) {
-    getUserData(usernameValue).then((userData) => {
-      userData?.password === passwordValue ? alert('You have been logged successfuly!') : alert('It has not been possible to Log In!');
+    validateUserData(usernameValue, passwordValue).then((validateObj) => {
+      alert(validateObj.validateResult);
     }).catch((err) => {
       alert('It has not been possible to Log In!');
     });
@@ -18,12 +18,12 @@ const loginButtonPressed = () => {
   }
 };
 
-const getUserData = async (usernameValue) => {
+const validateUserData = async (usernameValue, passwordValue) => {
   try {
-    const userData = await fetch(`/user/${usernameValue}`);
-    const userDataJSON = await userData.json();
+    const validateResult = await fetch(`/user/${usernameValue}&${passwordValue}`);
+    const validateResultJSON = await validateResult.json();
 
-    return userDataJSON;
+    return validateResultJSON;
   } catch(err) {
     throw 'Cannot fetch user data';
   }

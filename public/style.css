@@ -101,14 +101,14 @@ form button:hover {
 }
 
 .user_table {
-  width: 50%;
+  width: fit-content;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
   border: 2px solid black;
   border-radius: 50px;
-  padding: 20px 0px;
+  padding: 20px 50px;
   background-color: rgb(247, 239, 228);
 }
 

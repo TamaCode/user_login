@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 const { isEmail } = require('validator');
 const { Schema } = mongoose;
 
@@ -21,6 +22,11 @@ const userSchema = new Schema({
     validate: [isEmail, 'The email entered is not valid.']
   }
 }, { timestamps: true });
+
+userSchema.pre('save', async function() {
+  const salt = await bcrypt.genSalt();
+  this.password = await bcrypt.hash(this.password, salt);
+});
 
 const User = mongoose.model('User', userSchema);
 
